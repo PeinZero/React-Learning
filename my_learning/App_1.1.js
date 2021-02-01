@@ -2,6 +2,7 @@
 // import React, {Component} from 'react';
 // import Person from './Person/Person';
 
+// HANDLERS (METHODS), STATE  AND SETSTATE, METHOD CALLING USING THIS OPERATOR
 
 class App extends Component{
   // props are set and pass value from outside the component, whereas state is managed inside a component.

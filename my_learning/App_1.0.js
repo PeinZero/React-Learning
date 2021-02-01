@@ -2,6 +2,7 @@
 // import React, {Component} from 'react';
 // import Person from './Person/Person';
 
+//  BASICS, REACT createElement AND ALTERNATIVES, JSX VS HTML, FUNCTIONAL VS CLASS COMPONENTS
 
 class App extends Component{
   render(){

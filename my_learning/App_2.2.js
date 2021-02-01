@@ -1,7 +1,8 @@
-import './App.css';
-import React, {Component} from 'react';
-import Person from './Person/Person'; 
+// import './App.css';
+// import React, {Component} from 'react';
+// import Person from './Person/Person'; 
 
+// DOING EVERYTHING DYNAMICALLY INSTEAD OF HARDCODING
 
 class App extends Component{
 
