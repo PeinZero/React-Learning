@@ -1,7 +1,6 @@
-import './App.css';
+import classes from './App.module.css';
 import React, {Component} from 'react';
 import Person from './Person/Person'; 
-
 
 class App extends Component{
 
@@ -19,9 +18,7 @@ class App extends Component{
     const personIndex = this.state.persons.findIndex( (person) =>{
       return person.id === id
     })
-    
-    // alternate way to copy person object
-    // const person = Object.assign({}, this.state.persons[personIndex])
+
     const person = {...this.state.persons[personIndex]}
     person.name = event.target.value
 
@@ -32,19 +29,9 @@ class App extends Component{
   }
 
   deletePersonHandler = (personIndex) =>{
-    // there is a flaw in this method because original state is being changed that can make app have unpredictable behaviors, so we should make a copy.
-    // const persons = this.state.persons
-
-    // we can make a copy by using slice() method without arguments
-    // using this statement as opposed to above fix the flaw
-    // const persons = this.state.persons.slice() 
-
-    // alternate way to make a copy is using spread operator
     const persons = [...this.state.persons]
     persons.splice(personIndex,1)
     this.setState({persons: persons})
-
-    // Note:- you should have change state in an immutable fashion, which means by first making a copy.
   }
 
   togglePersonHandler = () => {
@@ -53,15 +40,8 @@ class App extends Component{
   }
 
   render(){
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      cursor: 'pointer',
-      border: '1px solid blue',
-      padding: '8px'
-    }
-
     let persons = null
+    let btnClass = [classes.Button]
     if (this.state.showPerson){
       persons = (
         <div>
@@ -74,19 +54,30 @@ class App extends Component{
                       name = {person.name}
                       age = {person.age}  
                       key = {person.id}
-                      // react cannot differentiate between elements, so we need to give it a unique key.
-                      // This way, react will not need to re-render the entire list, but only the element changed in the list.
                   />
           })}
         </div>
       )
+      
+      btnClass.push(classes.Red);
     }
+
+    const assignedClasses = []
+
+    if (this.state.persons.length <= 2){
+      assignedClasses.push( classes.red)
+    }
+    if (this.state.persons.length <= 1){
+      assignedClasses.push( classes.bold )
+    }
+
     return(
-      <div className = 'App'>
-        <h1>Hey, man</h1>
-        <button style = {style} onClick = {this.togglePersonHandler}> Switch Person</button>
-        {persons}
-      </div>
+        <div className = {classes.App}>
+          <h1>Hey, man</h1>
+          <p className = {assignedClasses.join(' ')}>How you doing?</p>
+          <button className = {btnClass.join(' ')} onClick = {this.togglePersonHandler}> Switch Person</button>
+          {persons}
+        </div>
     )
   }
 }
